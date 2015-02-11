@@ -59,11 +59,14 @@ public class ExecutorProducer {
 		return environment;
 	}
 
-	@Named("pm")
+	@Named("rm")
 	@Produces
 	public RuntimeManager produceManager() {
 		KieServices kieServices = KieServices.Factory.get();
-		ReleaseId releaseId = kieServices.newReleaseId("com.redhat.capone.poc",
+		/**
+		 * This releaseId is pointed to a kjar produced by business central.
+		 */
+		ReleaseId releaseId = kieServices.newReleaseId("com.redhat.executor.poc",
 				"AsyncPOC", "1.0.0");
 		KieContainer kContainer = kieServices.newKieContainer(releaseId);
 
@@ -79,8 +82,10 @@ public class ExecutorProducer {
 
 	@Produces
 	public UserInfo produceUserInfo() {
-		// default implementation will load userinfo.properties file on the
-		// classpath
+		/**
+		 *  The DefaultUserInfo will load the userinfo.properties file on the classpath
+		 */
+		
 		return new DefaultUserInfo(true);
 	}
 

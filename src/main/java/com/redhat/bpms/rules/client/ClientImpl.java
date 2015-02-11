@@ -22,7 +22,7 @@ public class ClientImpl {
 	@Inject
 	private EntityManagerFactory emf;
 	
-	@Inject @Named("pm")
+	@Inject @Named("rm")
 	private RuntimeManager rm;
 
 	public ClientImpl() {
@@ -40,7 +40,7 @@ public class ClientImpl {
 				new AsyncWorkItemHandler(executorService));
 		executorService.init();
 
-		ksession.startProcess("com.redhat.capone.poc.AsyncWorkflow");
+		ksession.startProcess("com.redhat.executor.poc.AsyncWorkflow");
 
 	}
 }
